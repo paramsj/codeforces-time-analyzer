@@ -1,0 +1,29 @@
+# See https://github.com/github/gitignore/blob/main/Node.gitignore
+# Dependencies
+node_modules/
+/pacakge-lock.json
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Runtime output
+/dist
+/.next
+/out
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+.dockerignore
+
+# Database
+*.sqlite
+*.db
