@@ -6,7 +6,7 @@ A Node.js/Express backend that fetches Codeforces user submission data, processe
 
 1. **Fetch User Data**: Takes a Codeforces username and retrieves their solved problems, ratings, and yearly submission patterns
 2. **Calculate Total Time**: Sums up `predicted_time_seconds` from a FastAPI backend to get total time spent
-3. **AI-Generated Roasts**: Uses Google's Gemini or Groq's Llama models to generate witty, programmer-specific comparisons about the time invested
+3. **AI-Generated Roasts**: Uses Groq's Llama model to generate witty, programmer-specific comparisons about the time invested
 4. **Range Filtering**: Optional min/max rating filter to focus on problems within a specific difficulty range
 5. **Rating/Year Analytics**: Counts problems solved per rating tier and per year
 
@@ -41,14 +41,11 @@ Get predictions for a Codeforces user with rating range filter.
 
 ## AI Integration
 
-The app supports two AI providers (configure via environment variables):
+The app currently uses **Groq's Llama model** to generate witty, programmer-specific comparisons about the time invested (via the `GROQ_API_KEY` environment variable).
 
-| Provider | Env Variable | Model |
-|---|---|---|
-| Google Gemini | `GEMINI_API_KEY` | `gemini-2.5-flash-lite` |
-| Groq/Llama | `GROQ_API_KEY` | `llama-3.3-70b-versatile` |
+**Note:** Google Gemini support exists in the codebase (`utils/funnyResponse.js`) but is not currently wired into the request flow (the import is commented out in `controllers/home.controllers.js`). If you wish to enable Gemini, you would need to uncomment the Gemini import and remove the Groq import in that file.
 
-If neither API key is set, the app falls back to hardcoded humorous responses.
+If the `GROQ_API_KEY` is not set, the app falls back to hardcoded humorous responses from `fallBack.js`.
 
 ## Environment Variables
 
@@ -58,8 +55,7 @@ Create a `.env` file in the root directory:
 PORT=5000
 FASTAPI_URL=https://your-fastapi-server.com
 TIME_TALE_GET_TOKEN=your_bearer_token_here
-GEMINI_API_KEY=your_gemini_key_here   # optional, for Gemini roasts
-GROQ_API_KEY=your_groq_key_here       # optional, for Groq roasts
+GROQ_API_KEY=your_groq_key_here       # required for AI roasts
 ```
 
 ## Project Structure
