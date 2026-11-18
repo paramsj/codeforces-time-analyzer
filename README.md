@@ -103,7 +103,3 @@ docker run -p 5000:5000 --env-file .env cf-time-tale-backend
 ```
 
 The `.dockerignore` file excludes `node_modules`, logs, temp files, and git metadata to keep build context light.
-
-## License
-
-MIT
