@@ -9,8 +9,9 @@ const user_URL = 'https://codeforces.com/api/user.info?handles=';
 // this is to get maxRating and currentRating, you can change this to ratedList to get contest wise updates
 
 async function processSubmissionsinRange(handle,minRating,maxProblemRating) {
-    const url = `${BASE_URL}${handle}`;
-    const info_url = `${user_URL}${handle}`;
+    const encodedHandle = encodeURIComponent(handle);
+    const url = `${BASE_URL}${encodedHandle}`;
+    const info_url = `${user_URL}${encodedHandle}`;
     try {
         const res = await axios.get(url);
         const userInfo = await axios.get(info_url);

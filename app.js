@@ -8,6 +8,9 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.status(200).json({ message: "Welcome to Codeforces Time Tale Backend" });
+});
 
 import homeRouter from './routes/home.routes.js';
 app.use('/api/v1/home',homeRouter);
